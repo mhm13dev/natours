@@ -101,7 +101,7 @@ app.all('*', function(req, res, next) {
   next(new AppError(`${req.originalUrl} Does Not Exist!`, 404));
 });
 
-// ERROR HANDLER MIDDLEWARE //////////////////////////////////////////////////////////////////
+// GLOBAL ERROR HANDLER MIDDLEWARE //////////////////////////////////////////////////////////////////
 app.use(globalErrorHandler);
 
 module.exports = app;
