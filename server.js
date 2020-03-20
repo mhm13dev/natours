@@ -50,3 +50,13 @@ process.on('unhandledRejection', err => {
     process.exit(1);
   });
 });
+
+// Heroku Restart our Application by Sending a SIGTERM SIGNAL. We Need To Handle it Correctly So that our app shut downs gently!
+process.on('SIGTERM', () => {
+  console.log('Recieved SIGTERM!');
+  console.log('Quiting The Application Gracefully!');
+  server.close(() => {
+    console.log('Process Terminated!');
+    // Dont Need process.exit(); Heroku Does It
+  });
+});
