@@ -21,6 +21,9 @@ const reviewRouter = require('./routes/reviewRoutes');
 // Initialize Express
 const app = express();
 
+// Heroku Redirects Requests To Proxies Internally, So We need to Trust Proxies
+app.enable('trust proxy');
+
 // MIDDLEWARES //////////////////////////////////////////////////////////////////
 
 // Set Templating Engine and Views Directory
