@@ -8,9 +8,9 @@ export function hideAlert() {
     });
   }
 }
-export function showAlert(type, msg) {
+export function showAlert(type, msg, time = 10) {
   hideAlert();
   const markup = `<div class='alert alert--${type}'>${msg}</div>`;
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-  window.setTimeout(hideAlert, 10000);
+  window.setTimeout(hideAlert, time * 1000);
 }

@@ -4,6 +4,7 @@ import { login, logout } from './loginAndOut';
 import { updateSettings } from './updateSettings';
 import { displayMap } from './mapbox';
 import { getCheckoutSession } from './booking';
+import { showAlert } from './alerts';
 
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
@@ -67,3 +68,8 @@ if (bookingBtn)
     const { tourId } = e.target.dataset;
     await getCheckoutSession(tourId);
   });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alert) {
+  showAlert('success', alertMessage, 15);
+}

@@ -13,6 +13,7 @@ const cors = require('cors');
 
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
+const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -78,6 +79,15 @@ const limiter = rateLimit({
 });
 
 app.use('/api', limiter);
+
+/*
+ * Stripe Payment Confirmation
+ */
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 if (process.env.NODE_ENV === 'development') {
   // To Log Data about Request to the console
