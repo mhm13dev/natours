@@ -30,17 +30,17 @@ app.enable('trust proxy');
 /*
  * For Simple Request: GET and POST; Request From Every Origin To Every Route on our Server
  */
-// app.use(cors());
+app.use(cors());
 
 /*
  * For Simple Request: GET and POST; Request From Specified Origin To Every Route on our Server
  * Lets our API is on api.natours.com, then request from www.natours.com will be allowed only
  */
-app.use(
-  cors({
-    origin: 'chrome-extension://hchlgfaicmddilenlflajnmomalehbom'
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'https://www.natours.com/'
+//   })
+// );
 
 /*
  * For Non-Simple Request: PUT, PATCH, DELETE etc; Request To Every Route on our Server
