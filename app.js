@@ -9,6 +9,7 @@ const hpp = require('hpp');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -25,6 +26,32 @@ const app = express();
 app.enable('trust proxy');
 
 // MIDDLEWARES //////////////////////////////////////////////////////////////////
+// Implement CORS - Set "Acces-Controll-Allow-Origin" Headers
+/*
+ * For Simple Request: GET and POST; Request From Every Origin To Every Route on our Server
+ */
+// app.use(cors());
+
+/*
+ * For Simple Request: GET and POST; Request From Specified Origin To Every Route on our Server
+ * Lets our API is on api.natours.com, then request from www.natours.com will be allowed only
+ */
+app.use(
+  cors({
+    origin: 'chrome-extension://hchlgfaicmddilenlflajnmomalehbom'
+  })
+);
+
+/*
+ * For Non-Simple Request: PUT, PATCH, DELETE etc; Request To Every Route on our Server
+ */
+// options is also an http verb like GET and POST
+app.options('*', cors());
+
+/*
+ * For Non-Simple Request: PUT, PATCH, DELETE etc; Request To Specific Route on our Server
+ */
+// app.options('/api/v1/tours/:id', cors())
 
 // Set Templating Engine and Views Directory
 app.set('view engine', 'pug');
