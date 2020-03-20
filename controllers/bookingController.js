@@ -52,14 +52,13 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 //   return res.redirect('/');
 // });
 
-const createBookingOnCheckout = catchAsync(async session => {
+const createBookingOnCheckout = async session => {
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
   const price = session.amount / 100;
   await Booking.create({ tour, user, price });
-  return 'Booking Added Successfully';
-});
-exports.webhookCheckout = (req, res, next) => {
+};
+exports.webhookCheckout = catchAsync(async (req, res, next) => {
   const signature = req.headers['stripe-signature'];
 
   let event;
@@ -76,12 +75,12 @@ exports.webhookCheckout = (req, res, next) => {
     const session = event.data.object;
 
     // Fulfill the Order
-    createBookingOnCheckout(session);
+    await createBookingOnCheckout(session);
   }
   res.status(200).json({
     recieved: true
   });
-};
+});
 exports.getAllBookings = factory.getAll(Booking);
 exports.createBooking = factory.createOne(Booking);
 
