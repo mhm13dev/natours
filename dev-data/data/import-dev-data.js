@@ -39,7 +39,7 @@ async function importData() {
     console.log('Data Loaded Successfully!');
     process.exit();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 async function deleteData() {
@@ -50,7 +50,7 @@ async function deleteData() {
     console.log('Data Deleted Successfully!');
     process.exit();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 // console.log(process.argv);

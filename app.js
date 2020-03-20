@@ -8,6 +8,7 @@ const xssClean = require('xss-clean');
 const hpp = require('hpp');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -31,6 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Security HTTP Headers
 app.use(helmet());
+
+// Compress The Response Text Sent To The Client
+app.use(compression());
 
 // Limit the Requests per IP in a Specified Time
 const limiter = rateLimit({

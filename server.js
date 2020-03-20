@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 // Global Error Handlers FOr Node
 process.on('uncaughtException', err => {
-  console.log('Uncaught Exception! Shutting Down Application...');
-  console.log(`${err.name}: ${err.message}`);
-  console.log(err);
+  console.error('Uncaught Exception! Shutting Down Application...');
+  console.error(`${err.name}: ${err.message}`);
+  console.error(err);
   process.exit(1);
 });
 
@@ -42,9 +43,9 @@ const server = app.listen(port, () => {
 
 // Unhandled Rejection ERRORS
 process.on('unhandledRejection', err => {
-  console.log('Unhandled Rejection! Shutting Down Application...');
-  console.log(`${err.name}: ${err.message}`);
-  console.log(err);
+  console.error('Unhandled Rejection! Shutting Down Application...');
+  console.error(`${err.name}: ${err.message}`);
+  console.error(err);
   server.close(() => {
     process.exit(1);
   });

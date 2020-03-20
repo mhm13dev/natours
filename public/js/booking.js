@@ -13,6 +13,6 @@ export async function getCheckoutSession(tourId) {
       sessionId: res.data.session.id
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
