@@ -45,7 +45,11 @@ app.use(cors());
 /*
  * For Non-Simple Request: PUT, PATCH, DELETE etc; Request To Every Route on our Server
  */
-// options is also an http verb like GET and POST
+/*
+* options is also an http verb like GET and POST; Browsers, before sending the Non-Simple Requests, send the
+* options request to confirm whether to send the actual request or not; Here we are allowing Non-Simple to all
+* Routes on our servers
+* /
 app.options('*', cors());
 
 /*
