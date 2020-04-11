@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-// Global Error Handlers FOr Node
+// Global Error Handler For Node
 process.on('uncaughtException', err => {
   console.error('Uncaught Exception! Shutting Down Application...');
   console.error(`${err.name}: ${err.message}`);
