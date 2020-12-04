@@ -72,13 +72,13 @@ app.use(helmet());
 app.use(compression());
 
 // Limit the Requests per IP in a Specified Time
-const limiter = rateLimit({
-  max: 100,
-  windowMs: 60 * 60 * 1000, // (1 hour) Time in milliseconds
-  message: 'Too many requests. Try after 1 hour!'
-});
+// const limiter = rateLimit({
+//   max: 100,
+//   windowMs: 60 * 60 * 1000, // (1 hour) Time in milliseconds
+//   message: 'Too many requests. Try after 1 hour!'
+// });
 
-app.use('/api', limiter);
+// app.use('/api', limiter);
 
 /*
  * Stripe Payment Confirmation
@@ -123,8 +123,8 @@ app.use(
       'maxGroupSize',
       'difficulty',
       'ratingsAverage',
-      'ratingsQuantity'
-    ]
+      'ratingsQuantity',
+    ],
   })
 );
 
@@ -137,7 +137,7 @@ app.use('/api/v1/bookings', bookingRouter);
 app.use('/api/v1/users', userRouter);
 
 // For Unhandled Routes
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
   // res.status(404).json({
   //   status: 'fail',
   //   message: `The ${req.originalUrl} does not exist on this Server!`
